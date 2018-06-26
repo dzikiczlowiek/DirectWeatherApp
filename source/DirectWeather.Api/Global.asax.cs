@@ -16,7 +16,7 @@
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
             log4net.Config.XmlConfigurator.Configure();
-            IoCSetup.WireEverything();
+            IoCSetup.WireEverything().ConnectToWebApiDependencyResovler();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

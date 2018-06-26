@@ -1,5 +1,4 @@
 ﻿// ReSharper disable once CheckNamespace
-
 namespace DirectWeather.Api.App_Start
 {
     using System.Reflection;
@@ -18,9 +17,8 @@ namespace DirectWeather.Api.App_Start
 
     public static class IoCSetup
     {
-        public static void WireEverything()
+        public static ContainerBuilder WireEverything()
         {
-            var config = GlobalConfiguration.Configuration;
 
             var builder = new ContainerBuilder();
             builder.RegisterWebApiModelBinderProvider();
@@ -29,16 +27,22 @@ namespace DirectWeather.Api.App_Start
             builder.RegisterModule<LoggingModule>();
             builder.RegisterType<AppLogger>().As<IAppLogger>().SingleInstance();
 
-            builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().InstancePerRequest();
+            builder.RegisterType<QueryDispatcher>().As<IQueryDispatcher>().InstancePerLifetimeScope();
 
             builder.RegisterInstance(SystemClock.Instance).As<IClock>().SingleInstance();
 
             builder.RegisterType<HttpClientBuilder>().As<IHttpClientBuilder>().SingleInstance();
             builder.Register(context => context.Resolve<IHttpClientBuilder>().Build()).AsSelf().SingleInstance();
 
-            builder.RegisterType<ResponseBuilder>().As<IResponseBuilder>().InstancePerRequest();
+            builder.RegisterType<ResponseBuilder>().As<IResponseBuilder>().InstancePerLifetimeScope();
             builder.RegisterModule<OpenWeatherMapIoCSetup>();
 
+            return builder;
+        }
+
+        public static void ConnectToWebApiDependencyResovler(this ContainerBuilder builder)
+        {
+            var config = GlobalConfiguration.Configuration;
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }

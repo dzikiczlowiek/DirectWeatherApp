@@ -20,10 +20,10 @@
                     (OpenWeatherMapConfiguration)ConfigurationManager.GetSection(OpenWeatherMapConfiguration.Name))
                 .AsSelf()
                 .As<IHttpClientApiConfiguration>().SingleInstance();
-            builder.RegisterType<CountryCodesSource>().As<ICountryCodesSource>().InstancePerRequest();
+            builder.RegisterType<CountryCodesSource>().As<ICountryCodesSource>().InstancePerLifetimeScope();
             builder.RegisterType<JsonResponseMapper>().As<IStringMapper<WeatherData>>().SingleInstance();
             builder.RegisterType<OpenWeatherMapQueryHandler>()
-                .As<IQueryHandler<GetWeatherDataQuery, SourceResponse<IWeatherInfo>>>().InstancePerRequest();
+                .As<IQueryHandler<GetWeatherDataQuery, SourceResponse<IWeatherInfo>>>().InstancePerLifetimeScope();
             builder.RegisterType<OpenWeatherMapApiClient>().As<IOpenWeatherMapApiClient>().SingleInstance();
         }
     }
