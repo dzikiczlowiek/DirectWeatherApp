@@ -36,7 +36,7 @@ namespace DirectWeather.Api.App_Start
             builder.RegisterType<HttpClientBuilder>().As<IHttpClientBuilder>().SingleInstance();
             builder.Register(context => context.Resolve<IHttpClientBuilder>().Build()).AsSelf().SingleInstance();
 
-            builder.RegisterType<ResponseBuilder>().AsSelf().SingleInstance();
+            builder.RegisterType<ResponseBuilder>().As<IResponseBuilder>().InstancePerRequest();
             builder.RegisterModule<OpenWeatherMapIoCSetup>();
 
             var container = builder.Build();

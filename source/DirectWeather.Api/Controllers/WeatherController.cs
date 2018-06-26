@@ -17,9 +17,9 @@
     {
         private readonly IQueryDispatcher queryDispatcher;
 
-        private readonly ResponseBuilder responseBuilder;
+        private readonly IResponseBuilder responseBuilder;
 
-        public WeatherController(ResponseBuilder responseBuilder, IQueryDispatcher queryDispatcher)
+        public WeatherController(IResponseBuilder responseBuilder, IQueryDispatcher queryDispatcher)
         {
             this.responseBuilder = responseBuilder;
             this.queryDispatcher = queryDispatcher;
@@ -27,9 +27,9 @@
 
         [Route("{country}/{city}")]
         [EnableCors("*", "*", "GET")]
-        public async Task<IHttpActionResult> GetWeather(string country, string city)
+        public async Task<IHttpActionResult> GetWeather([FromUri]WeatherRequest request)
         {
-            var query = GetWeatherDataQuery.Create(country, city, TemperatureScale.Celsius);
+            var query = GetWeatherDataQuery.Create(request.Country, request.City, TemperatureScale.Celsius);
             var result = await queryDispatcher.ProcessAsync(query);
             var response = responseBuilder.MapWeatherDataResponse(result);
             return Ok(response);

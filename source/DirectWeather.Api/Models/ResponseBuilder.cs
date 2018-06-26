@@ -4,7 +4,7 @@
 
     using NodaTime;
 
-    public class ResponseBuilder
+    public class ResponseBuilder : IResponseBuilder
     {
         private readonly IClock clock;
 
@@ -41,5 +41,10 @@
                     return Response.Error(sourceResponse.Message, timestamp);
             }
         }
+    }
+
+    public interface IResponseBuilder
+    {
+        dynamic MapWeatherDataResponse(SourceResponse<IWeatherInfo> sourceResponse);
     }
 }
