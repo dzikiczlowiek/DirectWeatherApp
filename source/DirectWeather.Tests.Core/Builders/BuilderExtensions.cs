@@ -45,12 +45,16 @@
             return new WeatherRequestBuilder();
         }
 
+        public static WeatherRequestBuilder WeatherRequestForWarsawInPoland(this DataGeneratorHook hook)
+        {
+            return new WeatherRequestBuilder().ForCity("Warsaw").InCountry("Poland");
+        }
+
         public static WeatherDataBuilder WeatherData(this DataGeneratorHook hook)
         {
             return new WeatherDataBuilder();
         }
 
-        // TODO: move somewhere else
         public static QueryResult<IWeatherInfo> SuccessWeatherQueryResult(this DataGeneratorHook hook)
         {
             return QueryResult<IWeatherInfo>.Success(default(IWeatherInfo));

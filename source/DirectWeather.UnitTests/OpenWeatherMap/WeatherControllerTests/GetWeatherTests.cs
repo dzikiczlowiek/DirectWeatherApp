@@ -18,7 +18,7 @@
         public void ensure_that_query_dispatcher_was_queried_with_proper_query()
         {
             getWeatherFixture
-                .Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .Accept(A.WeatherRequestForWarsawInPoland())
                 .Execute()
                 .AssertThat
                     .ValidWeatherQueryWasSendToQueryDispatcher();
@@ -28,7 +28,7 @@
         public void ensure_that_query_result_was_utilized_in_response_builder_mapping_method()
         {
             getWeatherFixture
-                .Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .Accept(A.WeatherRequestForWarsawInPoland())
                 .AndTheResultForTheQueryIs(A.SuccessWeatherQueryResult())
                 .Execute()
                 .AssertThat
@@ -39,7 +39,7 @@
         public void ensure_that_action_returns_valid_response_from_response_builder()
         {
             getWeatherFixture
-                .Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .Accept(A.WeatherRequestForWarsawInPoland())
                 .AndTheResultForTheQueryIs(A.SuccessWeatherQueryResult())
                 .AndTheMappedResponseIs(A.ApiResponse().UseWeatherAsPayload(A.WeatherForWarsawInPoland()))
                 .Execute()

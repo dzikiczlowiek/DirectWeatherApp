@@ -19,14 +19,22 @@
         {
             mapFixture
                 .ToTestJsonString(A.WeatherJsonData().SetTemperatureTo(123).SetHumidityTo(90).SetTimestamp(14500001))
-                .Execute().AssertThat.ReceivedSuccessMessage().WeatherDataIsValid().TimestampIsProperlyMapped();
+                .Execute()
+                .AssertThat
+                    .ReceivedSuccessMessage()
+                    .WeatherDataIsValid()
+                    .TimestampIsProperlyMapped();
         }
 
         [Fact]
         public void mapper_should_properly_map_valid_error_response()
         {
-            mapFixture.ToTestJsonString(A.ErrorJsonData("ERROR TEST MESSAGE")).Execute().AssertThat
-                .ReceivedErrorMessage().MessageIsMapped();
+            mapFixture
+                .ToTestJsonString(A.ErrorJsonData("ERROR TEST MESSAGE"))
+                .Execute()
+                .AssertThat
+                    .ReceivedErrorMessage()
+                    .MessageIsMapped();
         }
     }
 }

@@ -7,26 +7,37 @@
 
     public class GetWheaterForCityTests : TestsBase, IClassFixture<GetWheaterForCityFixture>
     {
-        private readonly GetWheaterForCityFixture fixture;
+        private readonly GetWheaterForCityFixture getWheaterForCityFixture;
 
-        public GetWheaterForCityTests(GetWheaterForCityFixture fixture)
+        public GetWheaterForCityTests(GetWheaterForCityFixture getWheaterForCityFixture)
         {
-            this.fixture = fixture;
+            this.getWheaterForCityFixture = getWheaterForCityFixture;
         }
 
         [Fact]
         public void ensure_that_request_parameter_is_properly_project_to_http_get_url()
         {
-            fixture.ForCity("Warsaw").WithCountryCode("PL").ResultIn(TemperatureScale.Celsius)
-                .ApiReponseMappedToDefaultValue().Execute().AssertThat
-                .ApiGetUrlIsProperlyGeneratedUsingWeatherRequest();
+            getWheaterForCityFixture
+                .ForCity("Warsaw")
+                .WithCountryCode("PL")
+                .ResultIn(TemperatureScale.Celsius)
+                .ApiReponseMappedToDefaultValue()
+                .Execute()
+                .AssertThat
+                    .ApiGetUrlIsProperlyGeneratedUsingWeatherRequest();
         }
 
         [Fact]
         public void ensure_that_http_response_goes_through_json_mapper()
         {
-            fixture.ForCity("Warsaw").WithCountryCode("PL").ResultIn(TemperatureScale.Celsius)
-                .ApiReponseMappedToDefaultValue().Execute().AssertThat.HttpResponseGoesThroughMapper();
+            getWheaterForCityFixture
+                .ForCity("Warsaw")
+                .WithCountryCode("PL")
+                .ResultIn(TemperatureScale.Celsius)
+                .ApiReponseMappedToDefaultValue()
+                .Execute()
+                .AssertThat
+                    .HttpResponseGoesThroughMapper();
         }
     }
 }

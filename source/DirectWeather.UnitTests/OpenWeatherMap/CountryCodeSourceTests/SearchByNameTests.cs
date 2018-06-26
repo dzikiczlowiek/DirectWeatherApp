@@ -21,14 +21,23 @@
         [Fact]
         public void ensure_that_method_returns_null_when_code_not_found()
         {
-            searchByNameFixture.Term("LOREM_IPSUM").Execute().AssertThat.CodeNotFound();
+            searchByNameFixture
+                .Term("LOREM_IPSUM")
+                .Execute()
+                .AssertThat
+                    .CodeNotFound();
         }
 
         [Theory]
         [ClassData(typeof(CountryCodesTestData))]
         public void ensure_that_dictionary_contains_ISO_3166_country_code(string name, string code)
         {
-            searchByNameFixture.Term(name).Execute().AssertThat.FoundCode().CodeIs(code);
+            searchByNameFixture
+                .Term(name)
+                .Execute()
+                .AssertThat
+                    .FoundCode()
+                    .CodeIs(code);
         }
 
         public class CountryCodesTestData : IEnumerable<object[]>
