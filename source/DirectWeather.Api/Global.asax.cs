@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Routing;
-
-namespace DirectWeather.Api
+﻿namespace DirectWeather.Api
 {
+    using System.Web.Http;
+
+    using DirectWeather.Api.App_Start;
+
+    using Newtonsoft.Json.Serialization;
+
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
+            var config = GlobalConfiguration.Configuration;
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
+
+            log4net.Config.XmlConfigurator.Configure();
+            IoCSetup.WireEverything();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

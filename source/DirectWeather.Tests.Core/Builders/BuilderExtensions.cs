@@ -1,0 +1,35 @@
+﻿namespace DirectWeather.Tests.Core.Builders
+{
+    public static class DataGeneratorHookExtensions
+    {
+        public static JsonWeatherResponseBuilder WeatherJsonData(this DataGeneratorHook hook)
+        {
+            return JsonWeatherResponseBuilder.Success();
+        }
+
+        public static JsonWeatherResponseBuilder ErrorJsonData(this DataGeneratorHook hook, string message)
+        {
+            return JsonWeatherResponseBuilder.Error(message);
+        }
+
+        public static JsonWeatherResponseBuilder NotFoundJsonData(this DataGeneratorHook hook, string message)
+        {
+            return JsonWeatherResponseBuilder.NotFound(message);
+        }
+
+        public static GetWeatherDataQueryBuilder WeatherQuery(this DataGeneratorHook hook)
+        {
+            return new GetWeatherDataQueryBuilder();
+        }
+
+        public static GetWeatherDataQueryBuilder WeatherQueryForWarsawInPoland(this DataGeneratorHook hook)
+        {
+            return new GetWeatherDataQueryBuilder().ForCity("Warsaw").ForCountry("Poland");
+        }
+
+        public static WeatherDataBuilder WeatherData(this DataGeneratorHook hook)
+        {
+            return new WeatherDataBuilder();
+        }
+    }
+}
