@@ -20,7 +20,12 @@
         [InlineData("Germany", "Berlin")]
         public void confront_get_weather_action_with_real_data_for_specific_locations(string country, string city)
         {
-            getWeatherFixture.WireIoC().PrepareReqest(A.WeatherRequest().ForCity(city).InCountry(country)).Execute();
+            getWeatherFixture
+                .WireIoC()
+                .PrepareReqest(A.WeatherRequest().ForCity(city).InCountry(country))
+                .Execute()
+                .AssertThat
+                    .ResponseIsFrom(country,city);
         }
     }
 }
