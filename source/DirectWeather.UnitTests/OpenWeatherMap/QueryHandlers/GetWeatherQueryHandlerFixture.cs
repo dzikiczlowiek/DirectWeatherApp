@@ -59,7 +59,7 @@
             return this;
         }
 
-        private IQueryHandler<GetWeatherDataQuery, SourceResponse<IWeatherInfo>> CreateSut()
+        private IQueryHandler<GetWeatherDataQuery, QueryResult<IWeatherInfo>> CreateSut()
         {
             var sut = new OpenWeatherMapQueryHandler(FixtureElements.ApiClient, FixtureElements.CountryCodesSource);
             return sut;

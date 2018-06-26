@@ -14,7 +14,7 @@
 
         public ICountryCodesSource CountryCodesSource { get; } = Substitute.For<ICountryCodesSource>();
 
-        public SourceResponse<IWeatherInfo> Response { get; set; }
+        public QueryResult<IWeatherInfo> Response { get; set; }
 
         public GetWeatherDataQuery Query { get; set; }
 

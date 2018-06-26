@@ -46,8 +46,9 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\ApiResponseStatus.cs" />
     <Compile Include="Dtos\IWeatherInfo.cs" />
-    <Compile Include="Dtos\SourceResponse.cs" />
+    <Compile Include="Dtos\QueryResult.cs" />
     <Compile Include="Dtos\TemperatureScale.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Mappers\IMapper.cs" />

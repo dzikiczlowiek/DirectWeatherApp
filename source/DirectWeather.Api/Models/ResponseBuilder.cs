@@ -1,5 +1,8 @@
 ﻿namespace DirectWeather.Api.Models
 {
+    using System.Web.Http;
+
+    using DirectWeather.Api.ActionResults;
     using DirectWeather.Infrastructure.Dtos;
 
     using NodaTime;
@@ -13,38 +16,33 @@
             this.clock = clock;
         }
 
-        public dynamic MapWeatherDataResponse(SourceResponse<IWeatherInfo> sourceResponse)
+        public IHttpActionResult MapWeatherDataResponse(QueryResult<IWeatherInfo> queryResult)
         {
             var timestamp = clock.GetCurrentInstant().ToUnixTimeSeconds();
-            switch (sourceResponse.Status)
+            switch (queryResult.Status)
             {
-                case SourceResponseStatus.Ok:
+                case ApiResponseStatus.Ok:
                     {
                         var weather = new Weather();
-                        weather.DateTimestamp = sourceResponse.Payload.DateTimestamp;
-                        weather.Humidity = sourceResponse.Payload.Humidity;
+                        weather.DateTimestamp = queryResult.Payload.DateTimestamp;
+                        weather.Humidity = queryResult.Payload.Humidity;
 
                         var location = new Location();
-                        location.City = sourceResponse.Payload.City;
-                        location.Country = sourceResponse.Payload.Country;
+                        location.City = queryResult.Payload.City;
+                        location.Country = queryResult.Payload.Country;
                         weather.Location = location;
 
                         var temperature = new Temperature();
-                        temperature.Value = sourceResponse.Payload.Temperature;
-                        temperature.Format = sourceResponse.Payload.TemperatureScale.ToString();
+                        temperature.Value = queryResult.Payload.Temperature;
+                        temperature.Format = queryResult.Payload.TemperatureScale.ToString();
                         weather.Temperature = temperature;
 
-                        return Response<Weather>.Success(weather, timestamp);
+                        return ApiResponse<Weather>.Success(weather, timestamp);
                     }
 
                 default:
-                    return Response.Error(sourceResponse.Message, timestamp);
+                    return ApiResponse.Error(queryResult.Message, timestamp);
             }
         }
-    }
-
-    public interface IResponseBuilder
-    {
-        dynamic MapWeatherDataResponse(SourceResponse<IWeatherInfo> sourceResponse);
     }
 }

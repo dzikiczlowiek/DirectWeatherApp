@@ -35,7 +35,8 @@
                 TemperatureScale.Celsius);
             var result = await queryDispatcher.ProcessAsync(query);
             var response = responseBuilder.MapWeatherDataResponse(result);
-            return Ok(response);
+
+            return response;
         }
     }
 }

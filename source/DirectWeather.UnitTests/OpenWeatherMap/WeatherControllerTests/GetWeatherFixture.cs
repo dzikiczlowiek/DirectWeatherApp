@@ -17,7 +17,7 @@
             return this;
         }
 
-        public GetWeatherFixture AndTheResultForTheQueryIs(SourceResponse<IWeatherInfo> queryResult)
+        public GetWeatherFixture AndTheResultForTheQueryIs(QueryResult<IWeatherInfo> queryResult)
         {
             FixtureElements.QueryResult = queryResult;
             FixtureElements.QueryDispatcher.ProcessAsync(

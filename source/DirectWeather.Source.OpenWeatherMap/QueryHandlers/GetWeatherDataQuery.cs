@@ -3,7 +3,7 @@
     using DirectWeather.Infrastructure.Dtos;
     using DirectWeather.Infrastructure.QueryHandlers;
 
-    public class GetWeatherDataQuery : IQuery<SourceResponse<IWeatherInfo>>
+    public class GetWeatherDataQuery : IQuery<QueryResult<IWeatherInfo>>
     {
         private GetWeatherDataQuery(string country, string city, TemperatureScale temperatureScale)
         {

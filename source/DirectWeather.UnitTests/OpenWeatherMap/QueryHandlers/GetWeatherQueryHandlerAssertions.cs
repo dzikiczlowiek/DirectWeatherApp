@@ -40,21 +40,21 @@
         public static GetWeatherQueryHandlerFixtureElements QueryReturnsSuccess(
             this GetWeatherQueryHandlerFixtureElements elements)
         {
-            elements.Response.Status.Should().Be(SourceResponseStatus.Ok);
+            elements.Response.Status.Should().Be(ApiResponseStatus.Ok);
             return elements;
         }
 
         public static GetWeatherQueryHandlerFixtureElements QueryReturnsError(
             this GetWeatherQueryHandlerFixtureElements elements)
         {
-            elements.Response.Status.Should().Be(SourceResponseStatus.Failure);
+            elements.Response.Status.Should().Be(ApiResponseStatus.Failure);
             return elements;
         }
 
         public static GetWeatherQueryHandlerFixtureElements QueryDidNotFoundData(
             this GetWeatherQueryHandlerFixtureElements elements)
         {
-            elements.Response.Status.Should().Be(SourceResponseStatus.NotFound);
+            elements.Response.Status.Should().Be(ApiResponseStatus.NotFound);
             return elements;
         }
     }

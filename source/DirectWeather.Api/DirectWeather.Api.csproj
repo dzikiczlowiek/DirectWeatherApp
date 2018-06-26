@@ -97,19 +97,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionResults\ApiWeatherResult.cs" />
+    <Compile Include="ActionResults\ApiResponse.cs" />
     <Compile Include="App_Start\IoCSetup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApiRequest.cs" />
+    <Compile Include="Models\WeatherRequest.cs" />
+    <Compile Include="Models\IResponseBuilder.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ResponseBuilder.cs" />
     <Compile Include="Models\Temperature.cs" />
     <Compile Include="Models\WeatherInfo.cs" />
-    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\ResponseStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,9 +122,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DirectWeather.Infrastructure\DirectWeather.Infrastructure.csproj">
       <Project>{D814998A-7E67-45EA-A343-4852B901A22A}</Project>

@@ -27,6 +27,6 @@
 
         public GetWeatherDataQuery Query { get; set; }
 
-        public SourceResponse<IWeatherInfo> QueryResult { get; set; }
+        public QueryResult<IWeatherInfo> QueryResult { get; set; }
     }
 }

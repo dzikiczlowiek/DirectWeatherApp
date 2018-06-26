@@ -23,7 +23,7 @@
             builder.RegisterType<CountryCodesSource>().As<ICountryCodesSource>().InstancePerLifetimeScope();
             builder.RegisterType<JsonResponseMapper>().As<IStringMapper<WeatherData>>().SingleInstance();
             builder.RegisterType<OpenWeatherMapQueryHandler>()
-                .As<IQueryHandler<GetWeatherDataQuery, SourceResponse<IWeatherInfo>>>().InstancePerLifetimeScope();
+                .As<IQueryHandler<GetWeatherDataQuery, QueryResult<IWeatherInfo>>>().InstancePerLifetimeScope();
             builder.RegisterType<OpenWeatherMapApiClient>().As<IOpenWeatherMapApiClient>().SingleInstance();
         }
     }

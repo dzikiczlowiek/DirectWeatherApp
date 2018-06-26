@@ -40,9 +40,9 @@
         }
 
         // TODO: move somewhere else
-        public static SourceResponse<IWeatherInfo> SuccessWeatherQueryResult(this DataGeneratorHook hook)
+        public static QueryResult<IWeatherInfo> SuccessWeatherQueryResult(this DataGeneratorHook hook)
         {
-            return SourceResponse<IWeatherInfo>.Success(default(IWeatherInfo));
+            return QueryResult<IWeatherInfo>.Success(default(IWeatherInfo));
         }
     }
 }
