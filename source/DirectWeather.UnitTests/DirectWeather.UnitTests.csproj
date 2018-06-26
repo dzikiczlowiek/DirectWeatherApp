@@ -85,6 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="OpenWeatherMap\WeatherControllerTests\GetWeatherAssertions.cs" />
+    <Compile Include="OpenWeatherMap\WeatherControllerTests\GetWeatherFixture.cs" />
     <Compile Include="OpenWeatherMap\WeatherControllerTests\GetWeatherFixtureElements.cs" />
     <Compile Include="OpenWeatherMap\WeatherControllerTests\GetWeatherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
