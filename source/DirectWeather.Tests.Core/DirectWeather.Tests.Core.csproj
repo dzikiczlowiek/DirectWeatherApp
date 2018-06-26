@@ -49,6 +49,7 @@
       <DependentUpon>TestData.resx</DependentUpon>
     </Compile>
     <Compile Include="Builders\WeatherDataBuilder.cs" />
+    <Compile Include="Builders\WeatherRequestBuilder.cs" />
     <Compile Include="DataGenerator.cs" />
     <Compile Include="FakeHttpMessageHandler.cs" />
     <Compile Include="FixtureBase.cs" />
@@ -58,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DirectWeather.Api\DirectWeather.Api.csproj">
+      <Project>{BCDB6BC1-10D1-4954-A262-35BAD2C05BE9}</Project>
+      <Name>DirectWeather.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DirectWeather.Infrastructure\DirectWeather.Infrastructure.csproj">
       <Project>{D814998A-7E67-45EA-A343-4852B901A22A}</Project>
       <Name>DirectWeather.Infrastructure</Name>

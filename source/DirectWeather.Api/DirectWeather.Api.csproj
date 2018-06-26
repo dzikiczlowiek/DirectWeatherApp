@@ -105,7 +105,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ApiRequest.cs" />
-    <Compile Include="Models\Binders\WeatherRequestModelBinder.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ResponseBuilder.cs" />
     <Compile Include="Models\Temperature.cs" />
