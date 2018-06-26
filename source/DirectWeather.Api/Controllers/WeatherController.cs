@@ -29,7 +29,10 @@
         [EnableCors("*", "*", "GET")]
         public async Task<IHttpActionResult> GetWeather([FromUri] WeatherRequest request)
         {
-            var query = GetWeatherDataQuery.Create(request.Country.Trim(), request.City.Trim(), TemperatureScale.Celsius);
+            var query = GetWeatherDataQuery.Create(
+                request.Country.Trim(),
+                request.City.Trim(),
+                TemperatureScale.Celsius);
             var result = await queryDispatcher.ProcessAsync(query);
             var response = responseBuilder.MapWeatherDataResponse(result);
             return Ok(response);

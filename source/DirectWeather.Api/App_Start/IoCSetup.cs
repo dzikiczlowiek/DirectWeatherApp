@@ -1,4 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
+
 namespace DirectWeather.Api.App_Start
 {
     using System.Reflection;
@@ -19,7 +20,6 @@ namespace DirectWeather.Api.App_Start
     {
         public static ContainerBuilder WireEverything()
         {
-
             var builder = new ContainerBuilder();
             builder.RegisterWebApiModelBinderProvider();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
