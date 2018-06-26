@@ -2,6 +2,7 @@
 {
     using System.Web.Http;
 
+    using DirectWeather.Api.ActionResults;
     using DirectWeather.Api.Models;
     using DirectWeather.Infrastructure.Dtos;
     using DirectWeather.Infrastructure.QueryHandlers;
@@ -28,5 +29,7 @@
         public GetWeatherDataQuery Query { get; set; }
 
         public QueryResult<IWeatherInfo> QueryResult { get; set; }
+
+        public ApiResponse<Weather> MappedResponse { get; set; }
     }
 }

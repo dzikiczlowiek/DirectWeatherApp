@@ -1,5 +1,6 @@
 ﻿namespace DirectWeather.UnitTests.OpenWeatherMap.WeatherControllerTests
 {
+    using DirectWeather.Api.ActionResults;
     using DirectWeather.Api.Controllers;
     using DirectWeather.Api.Models;
     using DirectWeather.Infrastructure.Dtos;
@@ -24,6 +25,14 @@
                     Arg.Is<GetWeatherDataQuery>(
                         q => q.Country == FixtureElements.Request.Country && q.City == FixtureElements.Request.City))
                 .Returns(queryResult);
+            return this;
+        }
+
+        public GetWeatherFixture AndTheMappedResponseIs(ApiResponse<Weather> response)
+        {
+            FixtureElements.MappedResponse = response;
+            FixtureElements.ResponseBuilder.MapWeatherDataResponse(Arg.Is(FixtureElements.QueryResult))
+                .Returns(response);
             return this;
         }
 

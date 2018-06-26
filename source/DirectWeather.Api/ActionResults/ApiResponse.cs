@@ -15,7 +15,7 @@ namespace DirectWeather.Api.ActionResults
 
     public class ApiResponse : IHttpActionResult
     {
-        protected ApiResponse(string message, ResponseStatus status, long timestamp)
+        public ApiResponse(string message, ResponseStatus status, long timestamp)
         {
             Status = status;
             Message = message;

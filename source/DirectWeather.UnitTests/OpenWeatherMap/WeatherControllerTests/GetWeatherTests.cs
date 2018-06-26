@@ -1,7 +1,5 @@
 ﻿namespace DirectWeather.UnitTests.OpenWeatherMap.WeatherControllerTests
 {
-    using System;
-
     using DirectWeather.Tests.Core;
     using DirectWeather.Tests.Core.Builders;
 
@@ -34,7 +32,10 @@
         [Fact]
         public void ensure_that_action_returns_valid_response_from_response_builder()
         {
-            throw new NotImplementedException("Refactor action response to custom IHttpMessageResponse");
+            getWeatherFixture.Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .AndTheResultForTheQueryIs(A.SuccessWeatherQueryResult())
+                .AndTheMappedResponseIs(A.ApiResponse().UseWeatherAsPayload(A.WeatherForWarsawInPoland())).Execute()
+                .AssertThat.ReturnsValidApiResponse();
         }
     }
 }

@@ -41,7 +41,6 @@
             return this;
         }
 
-
         public WeatherDataBuilder InTemperatureScale(TemperatureScale temperatureScale)
         {
             TemperatureScale = temperatureScale;
@@ -74,6 +73,5 @@
             data.Status = Status;
             return data;
         }
-
     }
 }

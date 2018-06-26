@@ -29,6 +29,17 @@
             return new GetWeatherDataQueryBuilder().ForCity("Warsaw").ForCountry("Poland");
         }
 
+        public static ApiResonseBuilder ApiResponse(this DataGeneratorHook hook)
+        {
+            return new ApiResonseBuilder();
+        }
+
+        public static WeatherBuilder WeatherForWarsawInPoland(this DataGeneratorHook hook)
+        {
+            return new WeatherBuilder().SetTemperature(23).InTemperatureScale(TemperatureScale.Celsius)
+                .InCountry("Poland").ForCity("Warsaw").SetHumidity(40);
+        }
+
         public static WeatherRequestBuilder WeatherRequest(this DataGeneratorHook hook)
         {
             return new WeatherRequestBuilder();
