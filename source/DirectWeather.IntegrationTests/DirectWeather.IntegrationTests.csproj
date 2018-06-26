@@ -79,6 +79,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetWeatherFixture.cs" />
+    <Compile Include="GetWeatherFixtureElements.cs" />
     <Compile Include="GetWeatherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

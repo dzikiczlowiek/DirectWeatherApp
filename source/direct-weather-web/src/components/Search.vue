@@ -28,7 +28,7 @@ export default {
     search (evt) {
       evt.preventDefault();
       this.$emit('weatherInfoChanged', null);
-      this.axios.get('/api/v1/weather/'+this.parameters.country+'/'+this.parameters.city)
+      this.axios.get('/api/v1/weather/'+this.parameters.country.trim()+'/'+this.parameters.city.trim())
         .then(response =>{
           this.$emit('weatherInfoChanged', response.data);
         }).catch(error => {
