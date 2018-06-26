@@ -1,13 +1,11 @@
 ﻿namespace DirectWeather.UnitTests.OpenWeatherMap.WeatherControllerTests
 {
-    using System.Web.Http;
-
     using DirectWeather.Api.Controllers;
     using DirectWeather.Api.Models;
     using DirectWeather.Infrastructure.Dtos;
-    using DirectWeather.Infrastructure.QueryHandlers;
     using DirectWeather.Source.OpenWeatherMap.QueryHandlers;
     using DirectWeather.Tests.Core;
+    using DirectWeather.Tests.Core.Builders;
 
     using NSubstitute;
 
@@ -15,46 +13,33 @@
 
     public class GetWeatherTests : TestsBase, IClassFixture<GetWeatherFixture>
     {
-        private readonly GetWeatherFixture fixture;
+        private readonly GetWeatherFixture getWeatherFixture;
 
-        public GetWeatherTests(GetWeatherFixture fixture)
+        public GetWeatherTests(GetWeatherFixture getWeatherFixture)
         {
-            this.fixture = fixture;
+            this.getWeatherFixture = getWeatherFixture;
         }
 
         [Fact]
         public void ensure_that_query_dispatcher_was_queried_with_proper_query()
         {
-            var request = new WeatherRequest { Country = "Poland", City = "Warsaw" };
-            fixture.Accept(request).Execute().AssertThat.ValidWeatherQueryWasSendToQueryDispatcher();
+            getWeatherFixture
+                .Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .Execute()
+                .AssertThat
+                    .ValidWeatherQueryWasSendToQueryDispatcher();
         }
 
         [Fact]
         public void ensure_that_query_result_was_utilized_in_response_builder_mapping_method()
         {
-            var request = new WeatherRequest { Country = "Poland", City = "Warsaw" };
-            fixture.Accept(request).Execute().AssertThat.ValidWeatherQueryWasSendToQueryDispatcher();
+            getWeatherFixture
+                .Accept(A.WeatherRequest().ForCity("Warsaw").InCountry("Poland"))
+                .AndTheResultForTheQueryIs(A.SuccessWeatherQueryResult())
+                .Execute()
+                .AssertThat
+                    .ValidWeatherQueryWasSendResponseBuilder();
         }
-    }
-
-    public class GetWeatherFixtureElements : IFixtureElements
-    {
-        public GetWeatherFixtureElements()
-        {
-            QueryDispatcher.ProcessAsync(Arg.Do<GetWeatherDataQuery>(q => Query = q));
-        }
-
-        public IResponseBuilder ResponseBuilder { get; set; } = Substitute.For<IResponseBuilder>();
-
-        public IQueryDispatcher QueryDispatcher { get; set; } = Substitute.For<IQueryDispatcher>();
-
-        public IHttpActionResult Response { get; set; }
-
-        public WeatherRequest Request { get; set; }
-
-        public GetWeatherDataQuery Query { get; set; }
-
-        public SourceResponse<IWeatherInfo> QueryResult { get; set; }
     }
 
     public static class GetWeatherAssertions
@@ -65,6 +50,13 @@
             elements.QueryDispatcher.Received(1).ProcessAsync(Arg.Is(elements.Query));
             return elements;
         }
+
+        public static GetWeatherFixtureElements ValidWeatherQueryWasSendResponseBuilder(
+            this GetWeatherFixtureElements elements)
+        {
+            elements.ResponseBuilder.Received(1).MapWeatherDataResponse(Arg.Is(elements.QueryResult));
+            return elements;
+        }
     }
 
     public class GetWeatherFixture : FixtureBase<GetWeatherFixtureElements>
@@ -73,6 +65,13 @@
         {
             FixtureElements = new GetWeatherFixtureElements();
             FixtureElements.Request = request;
+            return this;
+        }
+
+        public GetWeatherFixture AndTheResultForTheQueryIs(SourceResponse<IWeatherInfo> queryResult)
+        {
+            FixtureElements.QueryResult = queryResult;
+            FixtureElements.QueryDispatcher.ProcessAsync(Arg.Is<GetWeatherDataQuery>(q => q.Country == FixtureElements.Request.Country && q.City == FixtureElements.Request.City)).Returns(queryResult);
             return this;
         }
 

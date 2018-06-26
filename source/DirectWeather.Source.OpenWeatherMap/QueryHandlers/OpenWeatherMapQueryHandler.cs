@@ -42,7 +42,7 @@
             weatherInfo.Temperature = apiResponse.Temperature;
             weatherInfo.DateTimestamp = apiResponse.DateTimestamp;
             weatherInfo.TemperatureScale = query.TemperatureScale;
-            return new SourceResponse<IWeatherInfo>(weatherInfo);
+            return SourceResponse<IWeatherInfo>.Success(weatherInfo);
         }
     }
 }

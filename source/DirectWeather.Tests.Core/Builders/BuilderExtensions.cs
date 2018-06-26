@@ -1,5 +1,7 @@
 ﻿namespace DirectWeather.Tests.Core.Builders
 {
+    using DirectWeather.Infrastructure.Dtos;
+
     public static class DataGeneratorHookExtensions
     {
         public static JsonWeatherResponseBuilder WeatherJsonData(this DataGeneratorHook hook)
@@ -27,9 +29,20 @@
             return new GetWeatherDataQueryBuilder().ForCity("Warsaw").ForCountry("Poland");
         }
 
+        public static WeatherRequestBuilder WeatherRequest(this DataGeneratorHook hook)
+        {
+            return new WeatherRequestBuilder();
+        }
+
         public static WeatherDataBuilder WeatherData(this DataGeneratorHook hook)
         {
             return new WeatherDataBuilder();
+        }
+
+        // TODO: move somewhere else
+        public static SourceResponse<IWeatherInfo> SuccessWeatherQueryResult(this DataGeneratorHook hook)
+        {
+            return SourceResponse<IWeatherInfo>.Success(default(IWeatherInfo));
         }
     }
 }

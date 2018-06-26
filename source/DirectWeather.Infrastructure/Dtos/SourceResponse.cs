@@ -28,6 +28,8 @@
 
         public TPayload Payload { get; }
 
+        public static SourceResponse<TPayload> Success(TPayload payload) => new SourceResponse<TPayload>(payload);
+
         public static SourceResponse<TPayload> Error(string message) =>
             new SourceResponse<TPayload>(message, SourceResponseStatus.Failure);
 
