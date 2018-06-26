@@ -17,6 +17,11 @@
 
         public string Status { get; private set; }
 
+        public static implicit operator WeatherData(WeatherDataBuilder builder)
+        {
+            return builder.Build();
+        }
+
         public WeatherDataBuilder SuccessResponse()
         {
             Status = "200";
@@ -58,11 +63,6 @@
         public WeatherDataBuilder InKelvins() => InTemperatureScale(TemperatureScale.Kelvin);
 
         public WeatherDataBuilder InFahrenheits() => InTemperatureScale(TemperatureScale.Fahrenheit);
-
-        public static implicit operator WeatherData(WeatherDataBuilder builder)
-        {
-            return builder.Build();
-        }
 
         public WeatherData Build()
         {

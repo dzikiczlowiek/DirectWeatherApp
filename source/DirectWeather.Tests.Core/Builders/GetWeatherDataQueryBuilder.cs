@@ -11,6 +11,11 @@
 
         public TemperatureScale TemperatureScale { get; private set; }
 
+        public static implicit operator GetWeatherDataQuery(GetWeatherDataQueryBuilder builder)
+        {
+            return builder.Build();
+        }
+
         public GetWeatherDataQueryBuilder ForCity(string city)
         {
             City = city;
@@ -42,11 +47,6 @@
         public GetWeatherDataQueryBuilder InKelvin()
         {
             return TemperatureIn(TemperatureScale.Kelvin);
-        }
-
-        public static implicit operator GetWeatherDataQuery(GetWeatherDataQueryBuilder builder)
-        {
-            return builder.Build();
         }
 
         public GetWeatherDataQuery Build()

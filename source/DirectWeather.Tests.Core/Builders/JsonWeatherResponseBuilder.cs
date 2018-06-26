@@ -4,9 +4,17 @@
 
     public class JsonWeatherResponseBuilder : IBuild<string>
     {
-        private JsonWeatherResponseBuilder()
-        {
-        }
+        private string template;
+
+        public string Status { get; private set; } = "200";
+
+        public decimal Humidity { get; private set; } = 0m;
+
+        public decimal Temperature { get; private set; } = 0m;
+
+        public string Message { get; private set; }
+
+        public long Timestamp { get; private set; } = 0;
 
         public static JsonWeatherResponseBuilder Success()
         {
@@ -21,6 +29,11 @@
         public static JsonWeatherResponseBuilder NotFound(string message)
         {
             return new JsonWeatherResponseBuilder().StatusData(404, message);
+        }
+
+        public static implicit operator string(JsonWeatherResponseBuilder builder)
+        {
+            return builder.Build();
         }
 
         public JsonWeatherResponseBuilder Succes()
@@ -58,38 +71,27 @@
 
         public string Build()
         {
-            var json = template.Replace(TemperatureMarker, Temperature.ToString(CultureInfo.InvariantCulture))
-                .Replace(HumidityMarker, Humidity.ToString(CultureInfo.InvariantCulture)).Replace(CodMarker, Status)
-                .Replace(MessageMarker, Message).Replace(TimestampMarker, Timestamp.ToString());
+            var json = template
+                .Replace(Variables.TemperatureMarker, Temperature.ToString(CultureInfo.InvariantCulture))
+                .Replace(Variables.HumidityMarker, Humidity.ToString(CultureInfo.InvariantCulture))
+                .Replace(Variables.CodMarker, Status)
+                .Replace(Variables.MessageMarker, Message)
+                .Replace(Variables.TimestampMarker, Timestamp.ToString());
 
             return json;
         }
 
-        public static implicit operator string(JsonWeatherResponseBuilder builder)
+        private static class Variables
         {
-            return builder.Build();
+            public const string TemperatureMarker = "<TEMP_VARIABLE>";
+
+            public const string HumidityMarker = "<HUMIDITY_VARIABLE>";
+
+            public const string CodMarker = "<COD_VARIABLE>";
+
+            public const string MessageMarker = "<MESSAGE_VARIABLE>";
+
+            public const string TimestampMarker = "<TIMESTAMP_VARIABLE>";
         }
-
-        private const string TemperatureMarker = "<TEMP_VARIABLE>";
-
-        private const string HumidityMarker = "<HUMIDITY_VARIABLE>";
-
-        private const string CodMarker = "<COD_VARIABLE>";
-
-        private const string MessageMarker = "<MESSAGE_VARIABLE>";
-
-        private const string TimestampMarker = "<TIMESTAMP_VARIABLE>";
-
-        private string template;
-
-        public string Status { get; private set; } = "200";
-
-        public decimal Humidity { get; private set; } = 0m;
-
-        public decimal Temperature { get; private set; } = 0m;
-
-        public string Message { get; private set; }
-
-        public long Timestamp { get; private set; } = 0;
     }
 }

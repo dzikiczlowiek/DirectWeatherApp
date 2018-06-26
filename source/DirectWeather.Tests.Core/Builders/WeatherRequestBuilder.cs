@@ -8,6 +8,11 @@
 
         public string City { get; private set; }
 
+        public static implicit operator WeatherRequest(WeatherRequestBuilder builder)
+        {
+            return builder.Build();
+        }
+
         public WeatherRequestBuilder ForCity(string city)
         {
             City = city;
@@ -26,11 +31,6 @@
             request.City = City;
             request.Country = Country;
             return request;
-        }
-
-        public static implicit operator WeatherRequest(WeatherRequestBuilder builder)
-        {
-            return builder.Build();
         }
     }
 }

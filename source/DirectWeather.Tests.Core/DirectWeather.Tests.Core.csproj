@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestData.resx</DependentUpon>
     </Compile>
+    <Compile Include="Builders\WeatherBuilder.cs" />
     <Compile Include="Builders\WeatherDataBuilder.cs" />
     <Compile Include="Builders\WeatherRequestBuilder.cs" />
     <Compile Include="DataGenerator.cs" />
