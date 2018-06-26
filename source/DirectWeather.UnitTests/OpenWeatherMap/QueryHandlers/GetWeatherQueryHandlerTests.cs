@@ -31,8 +31,14 @@
         [Fact]
         public void ensure_that_handler_returns_valid_data()
         {
-            fixture.For(A.WeatherQueryForWarsawInPoland().InCelsius()).SetCodeForQueriedCountry("CO")
-                .ApiClientReturns(A.WeatherData()).Execute().AssertThat.ApiClientWasQueried().QueryReturnsSuccess();
+            fixture
+                .For(A.WeatherQueryForWarsawInPoland().InCelsius())
+                .SetCodeForQueriedCountry("CO")
+                .ApiClientReturns(A.WeatherData().SuccessResponse())
+                .Execute()
+                .AssertThat
+                    .ApiClientWasQueried()
+                    .QueryReturnsSuccess();
         }
     }
 }

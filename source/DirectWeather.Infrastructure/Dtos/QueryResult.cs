@@ -18,7 +18,7 @@
         public static QueryResult<TPayload> Success(TPayload payload) => new QueryResult<TPayload>(payload);
 
         public static QueryResult<TPayload> Error(string message) =>
-            new QueryResult<TPayload>(message, ApiResponseStatus.Failure);
+            new QueryResult<TPayload>(message, ApiResponseStatus.Error);
 
         public static QueryResult<TPayload> NotFound(string message) =>
             new QueryResult<TPayload>(message, ApiResponseStatus.NotFound);

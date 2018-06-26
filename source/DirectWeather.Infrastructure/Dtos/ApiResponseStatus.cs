@@ -8,6 +8,6 @@
 
         NotFound = 2,
 
-        Failure = 3
+        Error = 3
     }
 }

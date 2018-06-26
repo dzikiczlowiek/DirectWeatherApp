@@ -9,9 +9,19 @@
 
         public decimal Temperature { get; private set; } = 40;
 
+        public decimal Humidity { get; private set; } = 23;
+
         public TemperatureScale TemperatureScale { get; private set; } = TemperatureScale.Celsius;
 
         public string Message { get; private set; }
+
+        public string Status { get; private set; }
+
+        public WeatherDataBuilder SuccessResponse()
+        {
+            Status = "200";
+            return this;
+        }
 
         public WeatherDataBuilder CreatedAt(long timestamp)
         {
@@ -24,6 +34,13 @@
             Temperature = temperature;
             return this;
         }
+
+        public WeatherDataBuilder WithHumidity(decimal humidity)
+        {
+            Humidity = humidity;
+            return this;
+        }
+
 
         public WeatherDataBuilder InTemperatureScale(TemperatureScale temperatureScale)
         {
@@ -51,7 +68,12 @@
         public WeatherData Build()
         {
             var data = new WeatherData();
+            data.Message = Message;
+            data.DateTimestamp = Timestamp;
+            data.Humidity = Humidity;
+            data.Status = Status;
             return data;
         }
+
     }
 }

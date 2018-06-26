@@ -47,7 +47,7 @@
         public static GetWeatherQueryHandlerFixtureElements QueryReturnsError(
             this GetWeatherQueryHandlerFixtureElements elements)
         {
-            elements.Response.Status.Should().Be(ApiResponseStatus.Failure);
+            elements.Response.Status.Should().Be(ApiResponseStatus.Error);
             return elements;
         }
 
