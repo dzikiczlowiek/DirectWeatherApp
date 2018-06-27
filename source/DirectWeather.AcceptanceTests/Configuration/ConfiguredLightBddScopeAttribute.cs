@@ -1,7 +1,5 @@
-﻿namespace DirectWeather.AcceptanceTests
+﻿namespace DirectWeather.AcceptanceTests.Configuration
 {
-    using DirectWeather.AcceptanceTests.Core;
-
     using LightBDD.Core.Configuration;
     using LightBDD.Framework.Reporting.Configuration;
     using LightBDD.Framework.Reporting.Formatters;

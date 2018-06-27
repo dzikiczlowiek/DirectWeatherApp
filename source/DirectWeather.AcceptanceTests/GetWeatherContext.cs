@@ -2,6 +2,7 @@
 {
     using System.Threading;
 
+    using DirectWeather.AcceptanceTests.Configuration;
     using DirectWeather.AcceptanceTests.Core;
 
     using FluentAssertions;

@@ -1,4 +1,4 @@
-﻿namespace DirectWeather.AcceptanceTests.Core
+﻿namespace DirectWeather.AcceptanceTests.Configuration
 {
     using System.Configuration;
 

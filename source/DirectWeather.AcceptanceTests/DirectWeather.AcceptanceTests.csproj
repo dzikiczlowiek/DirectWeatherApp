@@ -88,7 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguredLightBddScopeAttribute.cs" />
+    <Compile Include="Configuration\ConfiguredLightBddScopeAttribute.cs" />
     <Compile Include="Core\SafeSearchContext.cs" />
     <Compile Include="Core\SafeWebElement.cs" />
     <Compile Include="Core\WebElementsPolicies.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Core\IPage.cs" />
     <Compile Include="Core\IPageElements.cs" />
     <Compile Include="Core\PageObject.cs" />
-    <Compile Include="Core\TestsConfiguration.cs" />
+    <Compile Include="Configuration\TestsConfiguration.cs" />
     <Compile Include="GetWeatherContext.cs" />
     <Compile Include="GetWeatherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
