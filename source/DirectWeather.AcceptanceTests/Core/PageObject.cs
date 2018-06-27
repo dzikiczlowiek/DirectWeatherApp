@@ -1,4 +1,4 @@
-namespace DirectWeather.AcceptanceTests
+namespace DirectWeather.AcceptanceTests.Core
 {
     using OpenQA.Selenium;
 

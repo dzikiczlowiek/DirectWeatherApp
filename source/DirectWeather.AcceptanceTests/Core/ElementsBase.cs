@@ -1,8 +1,6 @@
-namespace DirectWeather.AcceptanceTests
+namespace DirectWeather.AcceptanceTests.Core
 {
     using System.Collections.ObjectModel;
-
-    using DirectWeather.AcceptanceTests.Core;
 
     using OpenQA.Selenium;
     using OpenQA.Selenium.Interactions;

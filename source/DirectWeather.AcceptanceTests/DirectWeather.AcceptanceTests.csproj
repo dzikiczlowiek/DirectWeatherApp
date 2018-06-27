@@ -95,10 +95,10 @@
     <Compile Include="Core\DriverBuilder.cs" />
     <Compile Include="Core\PolicySeleniumExceptions.cs" />
     <Compile Include="Core\RetryBehaviorExtensions.cs" />
-    <Compile Include="ElementsBase.cs" />
-    <Compile Include="IPage.cs" />
-    <Compile Include="IPageElements.cs" />
-    <Compile Include="PageObject.cs" />
+    <Compile Include="Core\ElementsBase.cs" />
+    <Compile Include="Core\IPage.cs" />
+    <Compile Include="Core\IPageElements.cs" />
+    <Compile Include="Core\PageObject.cs" />
     <Compile Include="Core\TestsConfiguration.cs" />
     <Compile Include="GetWeatherContext.cs" />
     <Compile Include="GetWeatherTests.cs" />

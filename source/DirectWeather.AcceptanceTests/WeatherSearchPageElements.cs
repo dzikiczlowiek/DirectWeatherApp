@@ -1,5 +1,7 @@
 namespace DirectWeather.AcceptanceTests
 {
+    using DirectWeather.AcceptanceTests.Core;
+
     using OpenQA.Selenium;
 
     public class WeatherSearchPageElements : ElementsBase
