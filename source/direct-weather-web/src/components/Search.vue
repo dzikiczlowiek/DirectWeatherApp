@@ -1,10 +1,10 @@
 <template>
-  <b-form class="search fadeIn"  @submit="search" >
+  <b-form id="seatchForm" class="search fadeIn"  @submit="search" >
    <b-input-group prepend="Current weather for" variant="primary">
     <b-input-group-append>
-      <b-form-input v-model="parameters.country" placeholder="country" required></b-form-input>
-      <b-form-input v-model="parameters.city" placeholder="city" required></b-form-input>
-      <b-btn variant="primary" type="submit" >Search</b-btn>
+      <b-form-input id="country" v-model="parameters.country" placeholder="country" required></b-form-input>
+      <b-form-input id="city" v-model="parameters.city" placeholder="city" required></b-form-input>
+      <b-btn id="searchBtn" variant="primary" type="submit">Search</b-btn>
     </b-input-group-append>
   </b-input-group>
 </b-form>

@@ -1,10 +1,10 @@
  <template>
     <div class="top">
         <div class="info">
-            <div class="city">{{weatherInfo.location.city}}, {{weatherInfo.location.country}}</div>
-            <div class="night">{{weatherInfo.dateTimestamp | moment("dddd, MMMM Do YYYY")}}</div>
-            <div class="temp">{{weatherInfo.temperature.value}}° {{weatherInfo.temperature.format}}</div>
-            <div class="humidity"><span>Humidity: </span>{{weatherInfo.humidity}}</div>
+            <div id="location" class="city">{{weatherInfo.location.city}}, {{weatherInfo.location.country}}</div>
+            <div>{{weatherInfo.dateTimestamp | moment("dddd, MMMM Do YYYY")}}</div>
+            <div id="temperature" class="temp">{{weatherInfo.temperature.value}}° {{weatherInfo.temperature.format}}</div>
+            <div class="humidity"><span>Humidity: </span><span id="humidityValue" >{{weatherInfo.humidity}}</span></div>
         </div>
 </div>
 </template>      
