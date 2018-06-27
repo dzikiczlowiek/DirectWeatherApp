@@ -16,7 +16,8 @@
         {
             if (current != null)
             {
-                throw new InvalidOperationException($"Only one instance of {typeof(WebElementsPolicies).Name} allowed.");
+                throw new InvalidOperationException(
+                    $"Only one instance of {typeof(WebElementsPolicies).Name} allowed.");
             }
 
             Find = PolicySeleniumExceptions.ForElements<IWebElement>().TestRetryBehavior();

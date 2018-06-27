@@ -1,4 +1,4 @@
-﻿namespace DirectWeather.AcceptanceTests
+namespace DirectWeather.AcceptanceTests
 {
     using OpenQA.Selenium;
 
@@ -16,5 +16,3 @@
         protected IWebDriver Driver { get; set; }
     }
 }
-
-

@@ -37,6 +37,7 @@
         {
             return new SafeWebElement(webElement, driver);
         }
+
         public static SafeWebElement Wrap(Func<IWebElement> webElementGetter, IWebDriver driver)
         {
             var webElement = WebElementsPolicies.Current.Find.Execute(webElementGetter);

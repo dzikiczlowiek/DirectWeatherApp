@@ -11,9 +11,8 @@
     {
         protected override void OnConfigure(LightBddConfiguration configuration)
         {
-            configuration
-                .ReportWritersConfiguration()
-                .AddFileWriter<PlainTextReportFormatter>(TestsConfiguration.ReportsDirectory + "\\{TestDateTimeUtc:yyyy-MM-dd-HH_mm_ss}_FeaturesReport.txt");
+            configuration.ReportWritersConfiguration().AddFileWriter<PlainTextReportFormatter>(
+                TestsConfiguration.ReportsDirectory + "\\{TestDateTimeUtc:yyyy-MM-dd-HH_mm_ss}_FeaturesReport.txt");
         }
     }
 }

@@ -4,7 +4,7 @@ namespace DirectWeather.AcceptanceTests
 
     public class WeatherSearchPageObject : PageObject<WeatherSearchPageElements>
     {
-        public WeatherSearchPageObject(IWebDriver driver, string url) 
+        public WeatherSearchPageObject(IWebDriver driver, string url)
             : base(driver, new WeatherSearchPageElements(driver))
         {
             Url = url;

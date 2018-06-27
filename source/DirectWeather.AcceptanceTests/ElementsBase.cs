@@ -35,8 +35,7 @@ namespace DirectWeather.AcceptanceTests
 
         protected IWebElement FindBy(By by) => SafeSearchContext.Wrap(Driver).FindElement(by);
 
-        protected ReadOnlyCollection<IWebElement> FindMultipleByXpath(string xpath) =>
-            FindMultipleBy(By.XPath(xpath));
+        protected ReadOnlyCollection<IWebElement> FindMultipleByXpath(string xpath) => FindMultipleBy(By.XPath(xpath));
 
         protected ReadOnlyCollection<IWebElement> FindMultipleByCssSelector(string selector) =>
             FindMultipleBy(By.CssSelector(selector));

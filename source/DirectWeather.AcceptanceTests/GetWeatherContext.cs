@@ -1,6 +1,5 @@
 ﻿namespace DirectWeather.AcceptanceTests
 {
-    using System;
     using System.Threading;
 
     using DirectWeather.AcceptanceTests.Core;
@@ -36,7 +35,6 @@
             WeatherSearchPage.TypeCity(city);
         }
 
-
         public void and_I_type_country(string country)
         {
             Country = country.Trim();
@@ -55,8 +53,6 @@
             WeatherSearchPage.Map.Location.Text.Trim().ToLower().Should().StartWith(City.ToLower());
             WeatherSearchPage.Map.Location.Text.Trim().ToLower().Should().EndWith(Country.ToLower());
             WeatherSearchPage.Map.Humidity.Text.Trim().Should().NotBeNullOrEmpty();
-
-
         }
 
         public void close_browser()
